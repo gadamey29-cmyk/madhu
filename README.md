@@ -16,14 +16,37 @@ body {
 }
 
 .container {
-    margin-top: 60px;
+    margin-top: 50px;
+}
+
+/* Intro Screen */
+#intro {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 10;
+}
+
+#intro button {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+    background: #ff4b7d;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
 }
 
 /* Bears */
 .bear-container {
     position: relative;
-    height: 150px;
-    margin-top: 30px;
+    height: 160px;
+    margin-top: 20px;
 }
 
 .bear {
@@ -32,8 +55,16 @@ body {
     transition: 1s;
 }
 
-#bear1 { left: 30%; }
-#bear2 { right: 30%; }
+#bear1 { left: 25%; }
+#bear2 { right: 25%; }
+
+#loveHeart {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 40px;
+    display: none;
+}
 
 /* Buttons */
 button {
@@ -56,7 +87,6 @@ button {
     position: absolute;
 }
 
-/* Final Message */
 #finalMessage {
     display: none;
     font-size: 22px;
@@ -80,18 +110,24 @@ button {
 
 <body>
 
+<!-- Intro -->
+<div id="intro">
+    <h1>❤️ For Vibha ❤️</h1>
+    <button onclick="startLove()">Open My Heart 💖</button>
+</div>
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <div class="container">
-    <h1>For Vibha ❤️</h1>
+    <h2>2.3 Years. Different Places. Same Love. 💕</h2>
 
     <div class="bear-container">
         <div id="bear1" class="bear">🐻</div>
         <div id="bear2" class="bear">🐻‍❄️</div>
+        <div id="loveHeart">❤️</div>
     </div>
-
-    <p>
-        2.3 years. Different places. Same love. 💕<br>
-        Even miles apart… our hearts stay close.
-    </p>
 
     <h2>Will You Be My Valentine? 💍</h2>
 
@@ -100,17 +136,28 @@ button {
 
     <div id="finalMessage">
         Long distance was harder than clicking yes 🥺<br><br>
-        Now no more distance… only hugs forever 🐻🤍🐻‍❄️❤️
+        One day… no more calls ending.<br>
+        No more countdowns.<br>
+        Just us. Together. Always. ❤️
     </div>
 </div>
 
 <script>
 let noCount = 0;
 
+function startLove() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("bgMusic").play();
+    createHearts();
+}
+
 function yesClicked() {
-    // Bears move together (hug)
-    document.getElementById("bear1").style.left = "45%";
-    document.getElementById("bear2").style.right = "45%";
+    // Move bears together
+    document.getElementById("bear1").style.left = "40%";
+    document.getElementById("bear2").style.right = "40%";
+
+    // Show heart between them
+    document.getElementById("loveHeart").style.display = "block";
 
     document.getElementById("finalMessage").style.display = "block";
 }
@@ -142,8 +189,6 @@ function createHearts() {
         }, 5000);
     }, 400);
 }
-
-createHearts();
 </script>
 
 </body>
